@@ -4,9 +4,9 @@ import './App.css';
 function App() {
 	const props = ['name', 'email', 'tel', 'address', 'icon'];
 	const opts = { multiple: true };
+	const [contact, setContacts] = useState([]);
 
 	async function getContacts() {
-		const [contacts, setContacts] = useState([]);
 		try {
 			const contacts = await navigator.contacts.select(props, opts);
 			handleResults(contacts);
@@ -20,7 +20,7 @@ function App() {
 	return (
 		<div className='App'>
 			<button onClick={handleClick}>Click Me</button>
-			<p>{contacts[0]}</p>
+			{contact !== [] ? <p>{contact[0]} </p> : null}
 		</div>
 	);
 }
